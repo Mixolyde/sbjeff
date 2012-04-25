@@ -3,4 +3,39 @@ An implementation of my favorite Cheap Ass Game: Starbase Jeff
 This is a project of love, and I claim no copyright over the
 original game or its bits.
 
+Implemented:
+ * A few basic record and macro definitions
+ * Create a new, sorted deck of cards
+ * Really simple testing harness
+ 
+TODO:
+ * Nearly everything
+ * Constructors for other records
+ * Randomize a deck
+ * Text display game state
+ * Text display hand
+ * Text display player state
+ * Design data structure for the actual board during play
+ * Single turn
+ * Legal card placement test
+ * Legal sabotage test
+ * Payment route indication
+ * Payment route selection
+ * Overall game play structure and timeline
+ * Game end, clean-up and start next game
+ * Non text-based interface
+ * Simple AI (random card, random placement)
+ * Smart AI
+ * AIs with different playstyles
+ * Advanced Jeff capsule rules
+ * Player database and dbi
+ * Unit tests for everything
+ * Erlang documentation for entire app
+ 
+Getting Started with the Erlang Shell
+cd("git_checkout_dir/ebin").
+make:all([load]).
+sbjeff_test:unit_test().
+
+Deck = sbjeff_cards:sorted_deck().
 

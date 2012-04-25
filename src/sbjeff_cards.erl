@@ -14,7 +14,12 @@
 
 -include("../include/sbjeff.hrl").
 
-%% return a new, unshuffled deck
+%%--------------------------------------------------------------------
+%% Function: sorted_deck
+%% Purpose: Return a new Deck structure, unshuffled
+%% Args: None
+%% Returns: A list of #cards
+%%--------------------------------------------------------------------
 sorted_deck() ->
   lists:duplicate(3, #card{cname=rec, display="Recreation", priority = 0, cost = -1}) ++
   lists:duplicate(2, #card{cname=doc, display="Docking Bay", priority = 1, cost = -1}) ++
@@ -36,7 +41,7 @@ shuffle_deck(Deck) ->
 shuffle_deck([], Accum) -> Accum;
 shuffle_deck(Deck, Accum) ->
   %pull a random card out of the deck, add to accum and recurse
-  Rand = 1
+  Rand = 1,
   Card = lists:nth(Rand, Deck),
   NewDeck = lists:delete(Card, Deck),
   shuffle_deck(NewDeck, [Card | Accum]).

@@ -7,11 +7,23 @@
 %%% Created :  15 Mar 2012 by Brian E. Williams <mixolyde@gmail.com>
 %%%-------------------------------------------------------------------
 
+
+%%--------------------------------------------------------------------
+%% Data Type: player
+%%   pname: player's display name, a string
+%%   hand: current hand, a list of #cards
+%%   deck: player's unplayed deck, a list of #cards
+%%   cash: player's current cash, an int
+%%--------------------------------------------------------------------
 -record(player, {pname, hand = [], deck = [], cash = 0}).
 
-%% Card object. cname is an atom for the card name, display is the display name,
-%%   priority is the order number on the card,
-%%   cost is cost to play (-1 for caps)
+%%--------------------------------------------------------------------
+%% Data Type: card
+%%   cname: short card name, an atom from ?CARDNAMES
+%%   display: display name, a string
+%%   priority: the turn priority when played, an int
+%%   cost: cost to play, -1 for caps, an int
+%%--------------------------------------------------------------------
 -record(card, {cname, display, priority, cost}).
 
 -record(game, {board, deferred = [], pot = 0}).
