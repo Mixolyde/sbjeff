@@ -9,7 +9,7 @@
 
 
 %%--------------------------------------------------------------------
-%% Data Type: player
+%% Data Type: player and their state in a game
 %%   pname: player's display name, a string
 %%   hand: current hand, a list of #cards
 %%   deck: player's unplayed deck, a list of #cards
@@ -26,8 +26,30 @@
 %%--------------------------------------------------------------------
 -record(card, {cname, display, priority, cost}).
 
--record(game, {board, deferred = [], pot = 0}).
+% no idea what to use as a data structure to represent the grid-like
+%   game board, yet.
+-record(board, {}).
 
--record(session, {players = [], game}).
+%%--------------------------------------------------------------------
+%% Data Type: game, the current game or hand's state
+%%   board: the board data structure represents the played cards
+%%   deferred: the lists of player deferred cards {pname, [cards]}
+%%   pot: current cash in the pot, an int
+%%--------------------------------------------------------------------
+-record(game, {board = #board{}, turn_count = 1, deferred = [], pot = 0}).
 
+%%--------------------------------------------------------------------
+%% Data Type: session, tracks the overall session of multiple games
+%%   players: list of #players
+%%   game: current #game state
+%%--------------------------------------------------------------------
+-record(session, {players = [], game = #game{}}).
+
+%% list macro for iterating the list of card names
 -define(CARDNAMES, [rec, doc, com, lab, fac, hab, pow, sab]).
+
+%% size of a full deck
+-define(DECKSIZE, 20).
+
+%% size of a player's hand of cards
+-define(HANDSIZE, 5).
