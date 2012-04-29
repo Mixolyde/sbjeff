@@ -21,7 +21,7 @@ new_session(Players) when is_list(Players), length(Players) > 1, length(Players)
   true = lists:all(fun(Player) -> is_record(Player, player) end, Players),
   #session{players = Players, game = new_game()};
 new_session(Else) ->
-  {error, badarg, Else}.
+  error({badarg, Else}).
 
 apply_card(Player, Card, Game) when is_record(Game, game), is_record(Card, card), is_record(Player, player) ->
   % apply a card to the game state
