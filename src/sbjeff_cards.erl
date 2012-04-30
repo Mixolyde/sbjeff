@@ -47,19 +47,17 @@ shuffle_deck(Deck, Accum) ->
   NewDeck = lists:delete(Card, Deck),
   shuffle_deck(NewDeck, [Card | Accum]).
 
-%% return the details of a particular card
-card_properties(Card) ->
-  case Card of
-    rec -> #card{cname=rec, display="Recreation", priority = 0, cost = -1};
-    doc -> #card{cname=doc, display="Docking Bay", priority = 1, cost = -1};
-    com -> #card{cname=com, display="Communication", priority = 2, cost = -1};
-    lab -> #card{cname=lab, display="Laboratory", priority = 3, cost = 1};
-    fac -> #card{cname=fac, display="Factory", priority = 4, cost = 1};
-    hab -> #card{cname=hab, display="Habitat", priority = 5, cost = 2};
-    pow -> #card{cname=pow, display="Power Station", priority = 6, cost = 3};
-    sab -> #card{cname=sab, display="Sabotage", priority = 7, cost = 1};
-    Else -> {error, no_matching_card, Else}
-  end.
+%% return the record details of a particular card
+card_record(rec) -> #card{cname=rec, display="Recreation", priority = 0, cost = -1};
+card_record(doc) -> #card{cname=doc, display="Docking Bay", priority = 1, cost = -1};
+card_record(com) -> #card{cname=com, display="Communication", priority = 2, cost = -1};
+card_record(lab) -> #card{cname=lab, display="Laboratory", priority = 3, cost = 1};
+card_record(fac) -> #card{cname=fac, display="Factory", priority = 4, cost = 1};
+card_record(hab) -> #card{cname=hab, display="Habitat", priority = 5, cost = 2};
+card_record(pow) -> #card{cname=pow, display="Power Station", priority = 6, cost = 3};
+card_record(sab) -> #card{cname=sab, display="Sabotage", priority = 7, cost = 1};
+card_record(Else) ->
+  error({badarg, Else}).
 
 is_card(C) when is_record(C, card) ->
     true;

@@ -19,4 +19,5 @@ unit_test() ->
   ok =  sbjeff_cards_test:unit_test(),
   ok = sbjeff_player_test:unit_test(),
   ok =   sbjeff_game_test:unit_test(),
+  ok =   sbjeff_text_test:unit_test(),
   ok.

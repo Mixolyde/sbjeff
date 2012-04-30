@@ -8,13 +8,19 @@ Implemented:
  * Create a new, sorted deck of cards
  * Really simple testing harness
  * Randomized deck
+ * Game and session record constructors
+ * Started text-based interface for getting player count
  
 TODO:
  * Nearly everything
  * Constructors for other records
+ * Text interface to playing a game
  * Text display game state
  * Text display hand
  * Text display player state
+ * A way to use a file as input to the text interface for testing
+   standard randomization
+   swappable file io device instead of standard io
  * Design data structure for the actual board during play
  * Design turn structure
  * Execute a turn
@@ -30,15 +36,15 @@ TODO:
  * AIs with different playstyles
  * Advanced Jeff capsule rules
  * Player database and dbi
- * Unit tests for everything
- * Erlang documentation for entire app
+ * Proper Erlang documentation for modules, methods, data types, etc
+ * Convert this readme to the md format
  
 Getting Started with the Erlang Shell
 cd("git_checkout_dir/ebin").
 make:all([load]).
 ok = sbjeff_test:unit_test().
 
-% create some objects in the shell for fun
+% create some objects in the shell
 Deck = sbjeff_cards:shuffled_deck().
 Player = sbjeff_player:new("Player_Name").
 
