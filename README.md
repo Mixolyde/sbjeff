@@ -42,9 +42,9 @@ TODO
  
 Getting Started with the Erlang Shell
 -------------------------------------
- 1. cd("git_checkout_dir/ebin").
- 2. make:all([load]).
- 3. ok = sbjeff_test:unit_test().
+ 1. 'cd("git_checkout_dir/ebin").'
+ 2. 'make:all([load]).'
+ 3. 'ok = sbjeff_test:unit_test().'
 
     % create some objects in the shell
     Deck = sbjeff_cards:shuffled_deck().
