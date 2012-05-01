@@ -59,6 +59,15 @@ card_record(sab) -> #card{cname=sab, display="Sabotage", priority = 7, cost = 1}
 card_record(Else) ->
   error({badarg, Else}).
 
+%% return a list of valid exit directions for a card, given its orientation
+% assume a cap's default exit orientation is the direction it's facing
+card_exits(Card, 1) when Card == rec; Card == doc; Card == com -> [north];
+card_exits(Card, 2) when Card == rec; Card == doc; Card == com -> [east];
+card_exits(Card, 3) when Card == rec; Card == doc; Card == com -> [south];
+card_exits(Card, 4) when Card == rec; Card == doc; Card == com -> [west];
+card_exits(pow, _Any) -> [north, south, east, west];
+card_exits(sab, _Any) -> error({badarg, sab}).
+
 is_card(C) when is_record(C, card) ->
     true;
 is_card(_C) ->

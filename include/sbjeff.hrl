@@ -26,6 +26,16 @@
 %%--------------------------------------------------------------------
 -record(card, {cname, display, priority, cost}).
 
+%%--------------------------------------------------------------------
+%% Data Type: played_card represents a card played onto the game_board
+%%   cname: short card name, an atom from ?CARDNAMES
+%%   pname: playername that played the card
+%%   x: horizontal grid location, a signed int
+%%   y: vertical grid location, a signed int
+%%   orientation: [1-4] indicating the orientation of the piece, 1 is north, 2 is east, etc
+%%--------------------------------------------------------------------
+-record(played_card, {cname, pname, x, y, orientation}).
+
 % no idea what to use as a data structure to represent the grid-like
 %   game board, yet.
 -record(board, {}).
