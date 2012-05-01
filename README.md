@@ -1,9 +1,11 @@
 An implementation of my favorite Cheap Ass Game: Starbase Jeff
+==============================================================
 
 This is a project of love, and I claim no copyright over the
 original game or its bits.
 
-Implemented:
+Implemented
+-----------
  * A few basic record and macro definitions
  * Create a new, sorted deck of cards
  * Really simple testing harness
@@ -11,7 +13,8 @@ Implemented:
  * Game and session record constructors
  * Started text-based interface for getting player count
  
-TODO:
+TODO
+----
  * Nearly everything
  * Constructors for other records
  * Text interface to playing a game
@@ -40,15 +43,17 @@ TODO:
  * Convert this readme to the md format
  
 Getting Started with the Erlang Shell
-cd("git_checkout_dir/ebin").
-make:all([load]).
-ok = sbjeff_test:unit_test().
+-------------------------------------
+ 1. cd("git_checkout_dir/ebin").
+ 2. make:all([load]).
+ 3. ok = sbjeff_test:unit_test().
 
 % create some objects in the shell
 Deck = sbjeff_cards:shuffled_deck().
 Player = sbjeff_player:new("Player_Name").
 
-Development Process:
+Development Process
+-------------------
  * When creating a new module:
    1. add the new module name to the modules list in ebin/sbjeff.app
    2. create a matching _test module in the test folder with a unit_test method that
