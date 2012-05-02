@@ -27,14 +27,10 @@ start() ->
   PlayerRecords = [sbjeff_player:new_player(PlayerName) || PlayerName <- PlayerNames],
   io:format("Created Records: ~p~n", [PlayerRecords]),
   % start session
-  % start game
-  % get card selections
-  % determine order and deferred cards
-  % for each player, play chosen and/or deferred cards
-  % check for close of station in each turn
-  % if closed end the game
-  % else, next player
-  % after all players, back to card selections
+  Session = sbjeff_game:new_session(PlayerRecords),
+  % start games
+  ok = game_loop(Session),
+  io:format("Thanks for playing!~n"),
   ok.
 
 get_player_counts() ->
@@ -72,6 +68,19 @@ name_prompt(NamePrompt, Names) ->
     false -> Name
   end.
 
+yorn_prompt() ->
+  Result = get_user_input("Play another game (Y/N)? "),
+  case lists:member(Result, ["y", "n", "Y", "N", "yes", "no", "YES", "NO"]) of
+    true ->
+      case lists:member(Result, ["y", "Y", "yes", "YES"]) of
+        true -> yes;
+        false -> no
+      end;
+    false ->
+      io:format("Invalid reponse.~n"),
+      yorn_prompt()
+  end.
+
 get_user_input(Prompt) ->
   string:strip(   % remove spaces from front and back
     string:strip( % remove line-feed from the end
@@ -91,3 +100,22 @@ get_comp_names(Num, PlayerNames, Accum) ->
     false -> get_comp_names(Num - 1, [CompName | PlayerNames], [CompName | Accum])
   end.
 
+game_loop(Session) when is_record(Session, session) ->
+  % play a game
+  UpdatedSession = play_game(Session),
+  % print end of game stats
+  % prompt for another game
+  case yorn_prompt() of
+    yes -> game_loop(UpdatedSession);
+    no -> ok
+  end.
+
+play_game(Session) when is_record(Session, session) ->
+  % get card selections
+  % determine order and deferred cards
+  % for each player, play chosen and/or deferred cards
+  % check for close of station in each turn
+  % if closed end the game
+  % else, next player
+  % after all players, back to card selections
+  ok.

@@ -15,7 +15,7 @@
 
 new_game() ->
   % creates a new game with empty structures
-  #game{board = #board{}, turn_count = 1, deferred = [], pot = 0}.
+  #game{board = [], turn_count = 1, deferred = [], pot = 0}.
 
 new_session(Players) when is_list(Players), length(Players) > 1, length(Players) < 5 ->
   true = lists:all(fun(Player) -> is_record(Player, player) end, Players),

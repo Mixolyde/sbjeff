@@ -46,12 +46,16 @@ Getting Started with the Erlang Shell
  2. 'make:all([load]).'
  3. 'ok = sbjeff_test:unit_test().'
 
-`    % create some objects in the shell
+    % create some objects in the shell
+
     Deck = sbjeff_cards:shuffled_deck().
+
     Player = sbjeff_player:new("Player_Name").
+
     % attempt to play a game
+
     sbjeff_text:start().
-`
+
 
 Development Process
 -------------------

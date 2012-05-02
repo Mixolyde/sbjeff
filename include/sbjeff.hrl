@@ -30,23 +30,20 @@
 %% Data Type: played_card represents a card played onto the game_board
 %%   cname: short card name, an atom from ?CARDNAMES
 %%   pname: playername that played the card
+%%   pos: an {x, y} position tuple
 %%   x: horizontal grid location, a signed int
 %%   y: vertical grid location, a signed int
 %%   orientation: [1-4] indicating the orientation of the piece, 1 is north, 2 is east, etc
 %%--------------------------------------------------------------------
--record(played_card, {cname, pname, x, y, orientation}).
-
-% no idea what to use as a data structure to represent the grid-like
-%   game board, yet.
--record(board, {}).
+-record(played_card, {pos = {0, 0}, cname, pname, orientation}).
 
 %%--------------------------------------------------------------------
 %% Data Type: game, the current game or hand's state
-%%   board: the board data structure represents the played cards
+%%   board: the board data structure represents the played cards, a list of played_cards
 %%   deferred: the lists of player deferred cards {pname, [cards]}
 %%   pot: current cash in the pot, an int
 %%--------------------------------------------------------------------
--record(game, {board = #board{}, turn_count = 1, deferred = [], pot = 0}).
+-record(game, {board = [], turn_count = 1, deferred = [], pot = 0}).
 
 %%--------------------------------------------------------------------
 %% Data Type: session, tracks the overall session of multiple games

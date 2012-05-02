@@ -15,7 +15,7 @@
 
 unit_test() ->
   Game1 = sbjeff_game:new_game(),
-  true = is_record(Game1#game.board, board),
+  [] = Game1#game.board,
   1 = Game1#game.turn_count,
   [] = Game1#game.deferred,
   0 = Game1#game.pot,
