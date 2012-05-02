@@ -42,9 +42,10 @@ TODO
  
 Getting Started with the Erlang Shell
 -------------------------------------
- 1. 'cd("git_checkout_dir/ebin").'
- 2. 'make:all([load]).'
- 3. 'ok = sbjeff_test:unit_test().'
+ 1. `cd("git_checkout_dir/ebin").`
+ 2. `make:all([load]).`
+ 3. `ok = sbjeff_test:unit_test().`
+
 
     % create some objects in the shell
 
@@ -55,6 +56,7 @@ Getting Started with the Erlang Shell
     % attempt to play a game
 
     sbjeff_text:start().
+
 
 
 Development Process
