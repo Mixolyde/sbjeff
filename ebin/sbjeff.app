@@ -10,7 +10,7 @@
 {application, sbjeff,
   [{description,  "An implementation of starbase jeff written in Erlang" },
    {vsn,           "1.0" },
-   {modules,       [sbjeff_cards, sbjeff_player, sbjeff_game]},
+   {modules,       [sbjeff_cards, sbjeff_player, sbjeff_round, sbjeff_board, sbjeff_text]},
    {registered,    []},
    {applications,  [kernel,stdlib]},
    {env, []}

@@ -19,11 +19,23 @@ new_player() ->
 new_player(Int) when is_integer(Int) ->
   new_player("Player" ++ integer_to_list(Int));
 new_player(String) when is_list(String), length(String) > 0 ->
-  {Hand, Deck} = lists:split(?HANDSIZE, sbjeff_cards:shuffled_deck()),
-  #player{pname = String, hand = Hand, deck = Deck, cash = 50}.
+  shuffle_up(#player{pname = String, cash = 50}).
 
+shuffle_up(Player) ->
+  {Hand, Deck} = lists:split(?HANDSIZE, sbjeff_cards:shuffled_deck()),
+  Player#player{hand = Hand, deck = Deck}.
 
 is_player(P) when is_record(P, player) ->
     true;
 is_player(_P) ->
     false.
+
+select_card(Player = #player{hand = Hand, deck = [FirstDeck | RestDeck]}, Card) ->
+  % remove card from hand
+  ReducedHand = lists:delete(Card, Hand),
+  4 = length(ReducedHand),
+  % replace card in hand from deck
+  NewHand = [FirstDeck | ReducedHand],
+
+  % return updated player
+  Player#player{hand = NewHand, deck = RestDeck}.

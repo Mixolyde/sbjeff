@@ -25,4 +25,13 @@ unit_test() ->
   ?DECKSIZE - ?HANDSIZE = length(Deck2),
   true = sbjeff_player:is_player(Player1),
   false = sbjeff_player:is_player(player),
+  Player2 = sbjeff_player:shuffle_up(Player1),
+  "Player1" = Player2#player.pname,
+  50 = Player2#player.cash,
+  % select the first card in the player's hand and test the update
+  [FirstHand | RestHand] = Player2#player.hand,
+  [FirstDeck | RestDeck] = Player2#player.deck,
+  Player3 = sbjeff_player:select_card(Player2, FirstHand),
+  [FirstDeck | RestHand] = Player3#player.hand,
+  RestDeck = Player3#player.deck,
   ok.

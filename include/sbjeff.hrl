@@ -21,16 +21,16 @@
 %% Data Type: card
 %%   cname: short card name, an atom from ?CARDNAMES
 %%   display: display name, a string
-%%   priority: the turn priority when played, an int
+%%   rank: the turn priority of this card when played, an int
 %%   cost: cost to play, -1 for caps, an int
 %%--------------------------------------------------------------------
--record(card, {cname, display, priority, cost}).
+-record(card, {cname, display, rank, cost}).
 
 %%--------------------------------------------------------------------
 %% Data Type: played_card represents a card played onto the game_board
 %%   cname: short card name, an atom from ?CARDNAMES
 %%   pname: playername that played the card
-%%   pos: an {x, y} position tuple
+%%   pos: an {x, y} position tuple, used as db key
 %%   x: horizontal grid location, a signed int
 %%   y: vertical grid location, a signed int
 %%   orientation: [1-4] indicating the orientation of the piece, 1 is north, 2 is east, etc
@@ -38,19 +38,19 @@
 -record(played_card, {pos = {0, 0}, cname, pname, orientation}).
 
 %%--------------------------------------------------------------------
-%% Data Type: game, the current game or hand's state
+%% Data Type: round, the current round's state
 %%   board: the board data structure represents the played cards, a list of played_cards
 %%   deferred: the lists of player deferred cards {pname, [cards]}
 %%   pot: current cash in the pot, an int
 %%--------------------------------------------------------------------
--record(game, {board = [], turn_count = 1, deferred = [], pot = 0}).
+-record(round, {boardtable, turn_count = 1, deferred = [], pot = 0}).
 
 %%--------------------------------------------------------------------
-%% Data Type: session, tracks the overall session of multiple games
+%% Data Type: session, tracks the overall session of multiple rounds
 %%   players: list of #players
-%%   game: current #game state
+%%   round: current #round state
 %%--------------------------------------------------------------------
--record(session, {players = [], game = #game{}}).
+-record(session, {players = [], round = #round{}}).
 
 %% list macro for iterating the list of card names
 -define(CARDNAMES, [rec, doc, com, lab, fac, hab, pow, sab]).

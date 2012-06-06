@@ -17,4 +17,13 @@ unit_test() ->
   CompNames = sbjeff_text:get_comp_names(4, [], []),
   4 = length(CompNames),
   io:format("CompNames: ~p~n", [CompNames]),
+  Hand = [sab, rec, doc, com, lab, fac, hab, pow],
+  ok = sbjeff_text:print_hand("Player1", Hand),
+  PlayerNames = ["Brian", "Rob", "George", "Michael"],
+  PlayerRecords = [sbjeff_player:new_player(PlayerName) || PlayerName <- PlayerNames],
+  Session = sbjeff_game:new_session(PlayerRecords),
+  ok = sbjeff_text:print_round_stats(Session),
+  ok = sbjeff_text:print_session_stats(Session),
+
+
   ok.

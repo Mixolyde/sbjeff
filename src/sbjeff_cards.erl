@@ -48,23 +48,34 @@ shuffle_deck(Deck, Accum) ->
   shuffle_deck(NewDeck, [Card | Accum]).
 
 %% return the record details of a particular card
-card_record(rec) -> #card{cname=rec, display="Recreation", priority = 0, cost = -1};
-card_record(doc) -> #card{cname=doc, display="Docking Bay", priority = 1, cost = -1};
-card_record(com) -> #card{cname=com, display="Communication", priority = 2, cost = -1};
-card_record(lab) -> #card{cname=lab, display="Laboratory", priority = 3, cost = 1};
-card_record(fac) -> #card{cname=fac, display="Factory", priority = 4, cost = 1};
-card_record(hab) -> #card{cname=hab, display="Habitat", priority = 5, cost = 2};
-card_record(pow) -> #card{cname=pow, display="Power Station", priority = 6, cost = 3};
-card_record(sab) -> #card{cname=sab, display="Sabotage", priority = 7, cost = 1};
+card_record(rec) -> #card{cname=rec, display="Recreation", rank = 0, cost = -1};
+card_record(doc) -> #card{cname=doc, display="Docking Bay", rank = 1, cost = -1};
+card_record(com) -> #card{cname=com, display="Communication", rank = 2, cost = -1};
+card_record(lab) -> #card{cname=lab, display="Laboratory", rank = 3, cost = 1};
+card_record(fac) -> #card{cname=fac, display="Factory", rank = 4, cost = 1};
+card_record(hab) -> #card{cname=hab, display="Habitat", rank = 5, cost = 2};
+card_record(pow) -> #card{cname=pow, display="Power Station", rank = 6, cost = 3};
+card_record(sab) -> #card{cname=sab, display="Sabotage", rank = 7, cost = 1};
 card_record(Else) ->
   error({badarg, Else}).
 
+played_card(_Pos, sab, _Pname, _Orient) ->
+  error({badarg, "Cannot play a Sabotage card"});
+played_card({X, Y}, Cname, Pname, Orient) ->
+  case lists:member(Cname, ?CARDNAMES) of
+    true ->
+      PCard = #played_card{pos = {X, Y}, cname = Cname, pname = Pname, orientation = Orient},
+      PCard;
+    false ->
+      error({badarg, "Bad cardname to play"})
+  end.
+
 %% return a list of valid exit directions for a card, given its orientation
 % assume a cap's default exit orientation is the direction it's facing
-card_exits(Card, 1) when Card == rec; Card == doc; Card == com -> [north];
-card_exits(Card, 2) when Card == rec; Card == doc; Card == com -> [east];
-card_exits(Card, 3) when Card == rec; Card == doc; Card == com -> [south];
-card_exits(Card, 4) when Card == rec; Card == doc; Card == com -> [west];
+card_exits(Card, 1) when Card == rec; Card == doc; Card == com -> [east];
+card_exits(Card, 2) when Card == rec; Card == doc; Card == com -> [south];
+card_exits(Card, 3) when Card == rec; Card == doc; Card == com -> [west];
+card_exits(Card, 4) when Card == rec; Card == doc; Card == com -> [north];
 card_exits(pow, _Any) -> [north, south, east, west];
 card_exits(sab, _Any) -> error({badarg, sab}).
 

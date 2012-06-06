@@ -13,17 +13,18 @@ Implemented
  * Game and session record constructors
  * Started text-based interface for getting player count
  * Markdown version of this README
+ * Text display hand
+ * Board structure and table set
  
 TODO
 ----
  * Nearly everything
+ * Game loop
  * Constructors for other records
  * Text interface to playing a game
  * Text display game state
- * Text display hand
  * Text display player state
- * A way to use a file as input to the text interface for testing standard randomization swappable file io device instead of standard io
- * Design data structure for the actual board during play
+ * A way to use a file as input to the text interface for testing
  * Design turn structure
  * Execute a turn
  * Legal card placement test
@@ -42,11 +43,11 @@ TODO
  
 Getting Started with the Erlang Shell
 -------------------------------------
- 1. `cd("git_checkout_dir/ebin").`
- 2. `make:all([load]).`
- 3. `ok = sbjeff_test:unit_test().`
-
 ```
+    cd("git_checkout_dir/ebin").
+    make:all([load]).
+    ok = sbjeff_test:unit_test().
+
     % create some objects in the shell
     Deck = sbjeff_cards:shuffled_deck().
     Player = sbjeff_player:new("Player_Name").

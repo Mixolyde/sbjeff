@@ -16,8 +16,10 @@
 %% asserts each unit test module returns ok
 %% returns ok or {error, Message} if crashes
 unit_test() ->
-  ok =  sbjeff_cards_test:unit_test(),
-  ok = sbjeff_player_test:unit_test(),
-  ok =   sbjeff_game_test:unit_test(),
-  ok =   sbjeff_text_test:unit_test(),
+  ok =     sbjeff_cards_test:unit_test(),
+  ok =    sbjeff_player_test:unit_test(),
+  ok =     sbjeff_round_test:unit_test(),
+  ok =      sbjeff_text_test:unit_test(),
+  ok =     sbjeff_board_test:unit_test(),
+  ok = sbjeff_ai_random_test:unit_test(),
   ok.
